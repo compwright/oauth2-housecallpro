@@ -11,14 +11,14 @@ This package provides Housecall Pro OAuth 2.0 support for the PHP League's [OAut
 To install, use composer:
 
 ```
-composer require compwright/oauth2-housecallpro
+composer require compwright/oauth2-housecallpro league/oauth2-client
 ```
 
 ## Usage
 
 Usage is the same as The League's OAuth client, using `\Compwright\OAuth2_Housecallpro\Provider` as the provider.
 
-### Authorization Code Flow
+### Example: Authorization Code Flow
 
 ```php
 $provider = new Compwright\OAuth2_Housecallpro\Provider([
