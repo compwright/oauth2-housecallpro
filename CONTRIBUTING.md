@@ -29,14 +29,7 @@ We accept contributions via Pull Requests on [Github](https://github.com/compwri
 ## Running Tests
 
 ``` bash
-$ ./vendor/bin/phpunit
-```
-
-
-## Running PHP Code Sniffer
-
-``` bash
-$ ./vendor/bin/phpcs src --standard=psr2 -sp
+$ composer run-script test
 ```
 
 **Happy coding**!
