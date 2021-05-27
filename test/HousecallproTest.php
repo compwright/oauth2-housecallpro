@@ -5,14 +5,15 @@ namespace Compwright\OAuth2_Housecallpro\Test;
 use Compwright\OAuth2_Housecallpro\Provider;
 use League\OAuth2\Client\Tool\QueryBuilderTrait;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
-class HousecallproTest extends \PHPUnit_Framework_TestCase
+class HousecallproTest extends TestCase
 {
     use QueryBuilderTrait;
 
     protected $provider;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->provider = new Provider([
             'clientId' => 'mock_client_id',
@@ -21,7 +22,7 @@ class HousecallproTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
         parent::tearDown();
@@ -49,7 +50,7 @@ class HousecallproTest extends \PHPUnit_Framework_TestCase
         $query = ['scope' => implode($scopeSeparator, $options['scope'])];
         $url = $this->provider->getAuthorizationUrl($options);
         $encodedScope = $this->buildQueryString($query);
-        $this->assertContains($encodedScope, $url);
+        $this->assertStringContainsString($encodedScope, $url);
     }
 
     public function testGetAuthorizationUrl()
