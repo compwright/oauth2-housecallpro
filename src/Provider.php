@@ -41,7 +41,7 @@ class Provider extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://api.housecallpro.com/alpha/organization/profile';
+        return 'https://api.housecallpro.com/company';
     }
 
     /**

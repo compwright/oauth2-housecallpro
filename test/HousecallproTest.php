@@ -101,7 +101,7 @@ class HousecallproTest extends \PHPUnit_Framework_TestCase
         $postResponse->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);
 
         $userResponse = m::mock('Psr\Http\Message\ResponseInterface');
-        $userResponse->shouldReceive('getBody')->andReturn('{"object":"organization","id":"'.$userId.'","phone_number":"8585551234","email":"'.$email.'","company_name":"'.$name.'","logo_url":"'.$logoUrl.'","description":"My customer facing profile","printable_address":"123 Jump St. #44, San Diego, CA 92122","url":"/organizations/26127cfb-d36d-4fb1-a930-6a0f07fce65e","address":{"object":"organization_address","id":"26127cfb-d36d-4fb1-a930-6a0f07fce65e","street":"123 Jump St.","street_line_2":"#44","city":"San Diego","state":"CA","zip":"92122","latitude":"33.062759135379856","longitude":"-116.94116732622786"},"website":"company.com","default_arrival_window":0,"default_industry":{"id":"ind_ac53d778d6a740e7a162fd4ce9b68a1a","name":"Carpet Cleaning","asset_id":"CARPET"},"declared_industry":{"id":"ind_ac53d778d6a740e7a162fd4ce9b68a1a","name":"Plumbing","asset_id":"PLUMBING"},"declared_employee_count":1,"terms_url":"https://pro.housecall.io/MyCompanyInc/1/terms","time_zone":"America/Los_Angeles"}');
+        $userResponse->shouldReceive('getBody')->andReturn('{"object":"organization","id":"'.$userId.'","phone_number":"8585551234","support_email":"'.$email.'","name":"'.$name.'","logo_url":"'.$logoUrl.'","description":"My customer facing profile","printable_address":"123 Jump St. #44, San Diego, CA 92122","url":"/organizations/26127cfb-d36d-4fb1-a930-6a0f07fce65e","address":{"object":"organization_address","id":"26127cfb-d36d-4fb1-a930-6a0f07fce65e","street":"123 Jump St.","street_line_2":"#44","city":"San Diego","state":"CA","zip":"92122","latitude":"33.062759135379856","longitude":"-116.94116732622786"},"website":"company.com","default_arrival_window":0,"default_industry":{"id":"ind_ac53d778d6a740e7a162fd4ce9b68a1a","name":"Carpet Cleaning","asset_id":"CARPET"},"declared_industry":{"id":"ind_ac53d778d6a740e7a162fd4ce9b68a1a","name":"Plumbing","asset_id":"PLUMBING"},"declared_employee_count":1,"terms_url":"https://pro.housecall.io/MyCompanyInc/1/terms","time_zone":"America/Los_Angeles"}');
         $userResponse->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);
 
         $client = m::mock('GuzzleHttp\ClientInterface');
@@ -114,20 +114,19 @@ class HousecallproTest extends \PHPUnit_Framework_TestCase
         $user = $this->provider->getResourceOwner($token);
 
         $this->assertEquals($email, $user->getEmail());
-        $this->assertEquals($email, $user->toArray()['email']);
+        $this->assertEquals($email, $user->toArray()['support_email']);
         $this->assertEquals($userId, $user->getId());
         $this->assertEquals($userId, $user->toArray()['id']);
         $this->assertEquals($name, $user->getName());
-        $this->assertEquals($name, $user->toArray()['company_name']);
+        $this->assertEquals($name, $user->toArray()['name']);
         $this->assertEquals($logoUrl, $user->getLogoUrl());
         $this->assertEquals($logoUrl, $user->toArray()['logo_url']);
     }
 
-    /**
-     * @expectedException \League\OAuth2\Client\Provider\Exception\IdentityProviderException
-     */
     public function testOauth2Error()
     {
+        $this->expectException(\League\OAuth2\Client\Provider\Exception\IdentityProviderException::class);
+
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getBody')->andReturn('{"error": "invalid_grant", "error_description": "Invalid refresh token"}');
         $response->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);

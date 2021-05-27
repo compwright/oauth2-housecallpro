@@ -40,7 +40,7 @@ class ResourceOwner implements ResourceOwnerInterface
      */
     public function getEmail()
     {
-        return $this->response['email'] ?: null;
+        return $this->response['support_email'] ?: null;
     }
 
     /**
@@ -50,7 +50,7 @@ class ResourceOwner implements ResourceOwnerInterface
      */
     public function getName()
     {
-        return $this->response['company_name'] ?: null;
+        return $this->response['name'] ?: null;
     }
 
     /**
