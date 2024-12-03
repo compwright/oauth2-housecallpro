@@ -1,7 +1,6 @@
 # Housecall Pro Provider for OAuth 2.0 Client
 
 [![Latest Version](https://img.shields.io/github/release/compwright/oauth2-housecallpro.svg?style=flat-square)](https://github.com/compwright/oauth2-housecallpro/releases)
-[![Build Status](https://img.shields.io/travis/compwright/oauth2-housecallpro/master.svg?style=flat-square)](https://travis-ci.org/compwright/oauth2-housecallpro)
 [![Total Downloads](https://img.shields.io/packagist/dt/compwright/oauth2-housecallpro.svg?style=flat-square)](https://packagist.org/packages/compwright/oauth2-housecallpro)
 
 This package provides Housecall Pro OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
