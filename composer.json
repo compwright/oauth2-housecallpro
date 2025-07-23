@@ -19,30 +19,25 @@
         "provider"
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
-        "league/oauth2-client": "^2.5",
-        "psr/http-message": "^1.0 || ^2.0"
+        "php": "^8.3",
+        "league/oauth2-client": "^2.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "mockery/mockery": "^1.4",
-        "squizlabs/php_codesniffer": "^3.6",
-        "psr/http-message": "^1.1"
+        "friendsofphp/php-cs-fixer": "^3.74",
+        "guzzlehttp/guzzle": "^7.9",
+        "guzzlehttp/psr7": "^2.7",
+        "league/oauth2-client": "^2.5",
+        "phpunit/phpunit": "^12.0",
+        "phpstan/phpstan": "^2.1"
     },
     "autoload": {
         "psr-4": {
-            "Compwright\\OAuth2_Housecallpro\\": "src/"
+            "CompWright\\OAuth2\\HousecallPro\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Compwright\\OAuth2_Housecallpro\\Test\\": "test/"
+            "CompWright\\OAuth2\\HousecallPro\\": "test/"
         }
-    },
-    "scripts": {
-        "test": [
-            "phpcs --standard=psr2 src/",
-            "phpunit"
-        ]
     }
 }
