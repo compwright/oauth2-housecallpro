@@ -31,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Compwright\\OAuth2_Housecallpro\\": "src/"
+            "CompWright\\OAuth2\\HousecallPro\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Compwright\\OAuth2_Housecallpro\\Test\\": "test/"
+            "CompWright\\OAuth2\\HousecallPro\\": "test/"
         }
     },
     "scripts": {
