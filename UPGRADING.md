@@ -2,11 +2,11 @@
 
 ## 2.x to 3.x
 
-Version 3.x represents a complete re-write which breaks from previous versions. The new implementation is simpler, relies on fewer dependencies, and leverages language features introduced in PHP 8.x.
+Version 3.x represents a complete re-write which breaks from previous versions. The new implementation is simpler, relies on fewer dependencies, and leverages language features introduced in PHP 8.
 
 ### Updated PHP requirement
 
-The minimum PHP version required is 8.x.
+The minimum PHP version required is 8.3.
 
 ### Namespace and class name changes
 

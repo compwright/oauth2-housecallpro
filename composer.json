@@ -19,7 +19,7 @@
         "provider"
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.3",
         "league/oauth2-client": "^2.5"
     },
     "require-dev": {
