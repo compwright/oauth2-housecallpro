@@ -15,20 +15,23 @@ composer require compwright/oauth2-housecallpro league/oauth2-client
 
 ## Usage
 
-Usage is the same as The League's OAuth client, using `\Compwright\OAuth2_Housecallpro\Provider` as the provider.
+Usage is the same as The League's OAuth client, using `\CompWright\OAuth2\HousecallPro\HousecallproProvider` as the provider.
 
 ### Example: Authorization Code Flow
 
 ```php
-$provider = new Compwright\OAuth2_Housecallpro\Provider([
-    'clientId'      => '{housecallpro-client-id}',
-    'clientSecret'  => '{housecallpro-client-secret}',
-    'redirectUri'   => 'https://example.com/callback-url'
+$factory = new CompWright\OAuth2\HousecallPro\HousecallproProviderFactory();
+
+$provider = $factory->new(
+    clientId: '{housecallpro-client-id}',
+    clientSecret: '{housecallpro-client-secret}',
 ]);
 
 if (!isset($_GET['code'])) {
     // If we don't have an authorization code then get one
-    $authUrl = $provider->getAuthorizationUrl();
+    $authUrl = $provider->getAuthorizationUrl([
+        'redirect_uri' => 'https://example.com/callback-url',
+    ]);
     $_SESSION['oauth2state'] = $provider->getState();
     header('Location: ' . $authUrl);
     exit;
@@ -56,20 +59,12 @@ echo $token->getToken();
 ## Testing
 
 ``` bash
-$ composer run-script test
+$ make test
 ```
 
 ## Contributing
 
 Please see [CONTRIBUTING](https://github.com/compwright/oauth2-housecallpro/blob/master/CONTRIBUTING.md) for details.
-
-
-## Credits
-
-- [Jonathon Hill](https://github.com/compwright)
-- [Steven Maguire](https://github.com/stevenmaguire) for the Box provider package, which this package is forked form
-- [All Contributors](https://github.com/compwright/oauth2-housecallpro/contributors)
-
 
 ## License
 
