@@ -25,13 +25,12 @@ $factory = new CompWright\OAuth2\HousecallPro\HousecallproProviderFactory();
 $provider = $factory->new(
     clientId: '{housecallpro-client-id}',
     clientSecret: '{housecallpro-client-secret}',
-]);
+    redirectUri: '{housecallpro-app-redirect-uri}',
+);
 
 if (!isset($_GET['code'])) {
     // If we don't have an authorization code then get one
-    $authUrl = $provider->getAuthorizationUrl([
-        'redirect_uri' => 'https://example.com/callback-url',
-    ]);
+    $authUrl = $provider->getAuthorizationUrl();
     $_SESSION['oauth2state'] = $provider->getState();
     header('Location: ' . $authUrl);
     exit;

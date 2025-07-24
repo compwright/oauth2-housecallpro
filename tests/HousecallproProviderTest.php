@@ -24,18 +24,18 @@ class HousecallproProviderTest extends TestCase
         $factory = new HousecallproProviderFactory();
         $this->provider = $factory->new(
             'mock_client_id',
-            'mock_secret'
+            'mock_secret',
+            'https://foo.bar/redir',
         );
     }
 
     public function testGetAuthorizationUrl(): void
     {
         $actualUrl = $this->provider->getAuthorizationUrl([
-            'redirect_uri' => 'https://foo.bar/redir',
             'state' => 'foo',
         ]);
 
-        $expectedUrl = 'https://pro.housecallpro.com/oauth/authorize?redirect_uri=https%3A%2F%2Ffoo.bar%2Fredir&state=foo&response_type=code&approval_prompt=auto&client_id=mock_client_id';
+        $expectedUrl = 'https://pro.housecallpro.com/oauth/authorize?state=foo&response_type=code&approval_prompt=auto&redirect_uri=https%3A%2F%2Ffoo.bar%2Fredir&client_id=mock_client_id';
 
         $this->assertEquals(
             $expectedUrl,
@@ -60,7 +60,7 @@ class HousecallproProviderTest extends TestCase
                     $this->assertSame('POST', $request->getMethod());
                     $this->assertSame('application/json', $request->getHeaderLine('content-type'));
                     $this->assertSame(
-                        '{"client_id":"mock_client_id","client_secret":"mock_secret","redirect_uri":"https:\/\/foo.bar","grant_type":"authorization_code","code":"foo"}',
+                        '{"client_id":"mock_client_id","client_secret":"mock_secret","redirect_uri":"https:\/\/foo.bar\/redir","grant_type":"authorization_code","code":"foo"}',
                         (string) $request->getBody()
                     );
                     return true;
@@ -71,7 +71,6 @@ class HousecallproProviderTest extends TestCase
         $this->provider->setHttpClient($client);
         $token = $this->provider->getAccessToken('authorization_code', [
             'code' => 'foo',
-            'redirect_uri' => 'https://foo.bar',
         ]);
 
         $this->assertEquals('mock_access_token', $token->getToken());
@@ -96,7 +95,7 @@ class HousecallproProviderTest extends TestCase
                     $this->assertSame('POST', $request->getMethod());
                     $this->assertSame('application/json', $request->getHeaderLine('content-type'));
                     $this->assertSame(
-                        '{"client_id":"mock_client_id","client_secret":"mock_secret","redirect_uri":"https:\/\/foo.bar","grant_type":"authorization_code","code":"foo"}',
+                        '{"client_id":"mock_client_id","client_secret":"mock_secret","redirect_uri":"https:\/\/foo.bar\/redir","grant_type":"authorization_code","code":"foo"}',
                         (string) $request->getBody()
                     );
                     return true;
@@ -141,7 +140,6 @@ class HousecallproProviderTest extends TestCase
         $this->provider->setHttpClient($client);
         $token = $this->provider->getAccessToken('authorization_code', [
             'code' => 'foo',
-            'redirect_uri' => 'https://foo.bar',
         ]);
 
         $this->assertInstanceOf(AccessToken::class, $token);

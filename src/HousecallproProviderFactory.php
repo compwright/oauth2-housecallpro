@@ -23,11 +23,13 @@ class HousecallproProviderFactory
 
     public function new(
         ?string $clientId = null,
-        ?string $clientSecret = null
+        ?string $clientSecret = null,
+        ?string $redirectUri = null
     ): HousecallproProvider {
         $provider = new HousecallproProvider([
             'clientId' => $clientId,
             'clientSecret' => $clientSecret,
+            'redirectUri' => $redirectUri,
             'urlAccessToken' => self::API_TOKEN,
             'urlAuthorize' => self::API_AUTHORIZATION,
             'urlResourceOwnerDetails' => self::API_RESOURCE_OWNER,
