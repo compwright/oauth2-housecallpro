@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/compwright/oauth2-housecallpro/compare/v3.0.0...v3.0.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* allow configuring the redirectUri at the provider level ([558ea46](https://github.com/compwright/oauth2-housecallpro/commit/558ea46475107736a441cfaeb5b52461a3e0a78c))
+
 ## [3.0.0](https://github.com/compwright/oauth2-housecallpro/compare/2.1.0...v3.0.0) (2025-07-23)
 
 
